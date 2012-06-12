@@ -21,4 +21,6 @@ int ImageViewer::cameraCaptureClick()
         //imshow("video", frame);
         if (waitKey(30) >= 0) break;
     }
+    return 0;
 }
+

@@ -39,13 +39,17 @@
 ****************************************************************************/
 
 #include <QApplication>
-
+#include <QTextCodec>
 #include "imageviewer.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     ImageViewer imageViewer;
+    QTextCodec *codec = QTextCodec::codecForName("System");
+    QTextCodec::setCodecForLocale(codec);
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForTr(codec);
     imageViewer.show();
     return app.exec();
 }

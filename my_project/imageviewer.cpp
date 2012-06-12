@@ -50,7 +50,7 @@ ImageViewer::ImageViewer()
 {
     imageLabel = new QLabel;
     imageLabel->setBackgroundRole(QPalette::Base);
-    imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);// ÉèÖÃLabel¾¡¿ÉÄÜ´ó(The widget will get as much space as possible.)
+    imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);// è®¾ç½®Labelå°½å¯èƒ½å¤§(The widget will get as much space as possible.)
     imageLabel->setScaledContents(true); // if value is true,it will scale the pixmap to fill the available space
 
     scrollArea = new QScrollArea;
@@ -65,7 +65,7 @@ ImageViewer::ImageViewer()
 
     init();
 
-    setWindowTitle(tr("Image Process")); // ´°¿ÚÃûÒªÓÃÖĞÎÄ£¬´ı½â¾öÖĞÎÄÂÒÂëµÄÎÊÌâ
+    setWindowTitle(tr("Image Process")); // çª—å£åè¦ç”¨ä¸­æ–‡ï¼Œå¾…è§£å†³ä¸­æ–‡ä¹±ç çš„é—®é¢˜
     resize(500, 400);
 }
 //! [0]
@@ -75,7 +75,7 @@ ImageViewer::ImageViewer()
 void ImageViewer::init()
 {
     isUntitled = true;
-    logoType = 0;          // ´òË®Ó¡µÄÀàĞÍ
+    logoType = 0;          // æ‰“æ°´å°çš„ç±»å‹
 }
 
 void ImageViewer::open()
@@ -84,7 +84,7 @@ void ImageViewer::open()
     fileName = QFileDialog::getOpenFileName(this,
                                     tr("Open File"), QDir::currentPath());
     if (!fileName.isEmpty()) {
-        QImage qimage(fileName);     // C++µÄ¸ß¼¶ÓÃ·¨£¿¾­²âÊÔ¿ÉÒÔ¸ÄÎª£ºQImage image = QImage(fileName)
+        QImage qimage(fileName);     // C++çš„é«˜çº§ç”¨æ³•ï¼Ÿç»æµ‹è¯•å¯ä»¥æ”¹ä¸ºï¼šQImage image = QImage(fileName)
         setCurrentFile(fileName);
 
         if (qimage.isNull()) {
@@ -94,15 +94,15 @@ void ImageViewer::open()
         }
 //! [2] //! [3]
 
-        image = cv::imread(fileName.toAscii().data());    // imread()µÚ¶ş¸ö²ÎÊıFlags(>0:3 channels;<0:Return the loaded image as is
-                                                          // ;=0:Return a grayscale image,º¯ÊıµÚ¶ş¸ö²ÎÊı²»Ğ´Ê±£¬Ä¬ÈÏÎª<0)
+        image = cv::imread(fileName.toAscii().data());    // imread()ç¬¬äºŒä¸ªå‚æ•°Flags(>0:3 channels;<0:Return the loaded image as is
+                                                          // ;=0:Return a grayscale image,å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°ä¸å†™æ—¶ï¼Œé»˜è®¤ä¸º<0)
 
         qDebug()<<"the channels is:"<<image.channels();
         qDebug()<<"the depth is:"<<image.depth();
         qDebug()<<"the image type is:"<<image.type();
 /*
         if (image.channels() > 1)
-            cv::cvtColor(image, image, CV_BGR2RGB);       // Ö»ÊÊÓÃÓÚÔ­Ê¼imageÀàĞÍÎª¶àÍ¨µÀµÄ,µ¥Í¨µÀµÄ²»ĞĞ
+            cv::cvtColor(image, image, CV_BGR2RGB);       // åªé€‚ç”¨äºåŸå§‹imageç±»å‹ä¸ºå¤šé€šé“çš„,å•é€šé“çš„ä¸è¡Œ
 
         imageType = 0;
         img = QImage((const unsigned char*)(image.data),  // Qt image structure
@@ -129,12 +129,12 @@ void ImageViewer::open()
 //! [3] //! [4]
         scaleFactor = 1.0;
 
-        printAct->setEnabled(true);         // ¼¤»î´òÓ¡²Ëµ¥
-        fitToWindowAct->setEnabled(true);   // ¼¤»îfitToWindow²Ëµ¥
-        updateActions();                    // ¼¤»îÏà¹ØµÄ×Ó²Ëµ¥Ïî
+        printAct->setEnabled(true);         // æ¿€æ´»æ‰“å°èœå•
+        fitToWindowAct->setEnabled(true);   // æ¿€æ´»fitToWindowèœå•
+        updateActions();                    // æ¿€æ´»ç›¸å…³çš„å­èœå•é¡¹
 
-        if (!fitToWindowAct->isChecked())   // fitToWindow²Ëµ¥ÊÇ·ñ°´ÏÂ£¿
-            imageLabel->adjustSize();       // Adjusts the size of the widget to fit the contents(µ÷ÕûÊÇimageLabelµÄ´óĞ¡)
+        if (!fitToWindowAct->isChecked())   // fitToWindowèœå•æ˜¯å¦æŒ‰ä¸‹ï¼Ÿ
+            imageLabel->adjustSize();       // Adjusts the size of the widget to fit the contents(è°ƒæ•´æ˜¯imageLabelçš„å¤§å°)
 #endif
     }
 }
@@ -178,12 +178,12 @@ void ImageViewer::imageDisplay(cv::Mat &image)
 //! [3] //! [4]
     scaleFactor = 1.0;
 
-    printAct->setEnabled(true);         // ¼¤»î´òÓ¡²Ëµ¥
-    fitToWindowAct->setEnabled(true);   // ¼¤»îfitToWindow²Ëµ¥
-    updateActions();                    // ¼¤»îÏà¹ØµÄ×Ó²Ëµ¥Ïî
+    printAct->setEnabled(true);         // æ¿€æ´»æ‰“å°èœå•
+    fitToWindowAct->setEnabled(true);   // æ¿€æ´»fitToWindowèœå•
+    updateActions();                    // æ¿€æ´»ç›¸å…³çš„å­èœå•é¡¹
 
-    if (!fitToWindowAct->isChecked())   // fitToWindow²Ëµ¥ÊÇ·ñ°´ÏÂ£¿
-        imageLabel->adjustSize();       // Adjusts the size of the widget to fit the contents(µ÷ÕûÊÇimageLabelµÄ´óĞ¡)
+    if (!fitToWindowAct->isChecked())   // fitToWindowèœå•æ˜¯å¦æŒ‰ä¸‹ï¼Ÿ
+        imageLabel->adjustSize();       // Adjusts the size of the widget to fit the contents(è°ƒæ•´æ˜¯imageLabelçš„å¤§å°)
 }
 
 //! [4]
@@ -309,7 +309,7 @@ void ImageViewer::colorToGrayClick()
     qDebug()<<"the channels of this gray image is:"<<image.channels();
     qDebug()<<"the depth of this gray image is:"<<image.depth();
     qDebug()<<"the type of this gray image is:"<<image.type();
-    
+
     //cv::imshow("grayImage", imggray);
     //cv::waitKey();
 
@@ -363,8 +363,8 @@ void ImageViewer::salt(cv::Mat &image, int n)
     }
 }
 
-/* saveASÊ±²»ÄÜ±£´æ»Ò¶ÈºóµÄÍ¼Ïñ
- * µ«ÊÇ¼Ó½·ÑÎ´¦ÀíºóµÄÍ¼ÏñÊÇ¿ÉÒÔ±£´æµÄ£¬³ÌĞò´æÔÚBug,ÓĞ´ıĞŞ¸Ä
+/* saveASæ—¶ä¸èƒ½ä¿å­˜ç°åº¦åçš„å›¾åƒ
+ * ä½†æ˜¯åŠ æ¤’ç›å¤„ç†åçš„å›¾åƒæ˜¯å¯ä»¥ä¿å­˜çš„ï¼Œç¨‹åºå­˜åœ¨Bug,æœ‰å¾…ä¿®æ”¹
  */
 bool ImageViewer::saveFile(const QString &fileName)
 {
@@ -425,7 +425,7 @@ void ImageViewer::about()
 void ImageViewer::createActions()
 //! [17] //! [18]
 {
-    openAct = new QAction(tr("&Open..."), this);
+    openAct = new QAction(tr("&æ‰“å¼€..."), this);
     openAct->setShortcut(tr("Ctrl+O"));
     connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
 
@@ -552,6 +552,11 @@ void ImageViewer::createActions()
     stretchHistogramAct->setCheckable(true);
     connect(stretchHistogramAct, SIGNAL(triggered()), this, SLOT(stretchHistogramClick()));
 
+    fourTraceAct = new QAction(tr("FourTrace"), this);
+    fourTraceAct->setEnabled(false);
+    fourTraceAct->setCheckable(true);
+    connect(fourTraceAct, SIGNAL(triggered()), this, SLOT(fourTraceClick()));
+
     cameraCaptureAct = new QAction(tr("Camera"), this);
     //cameraCaptureAct->setEnabled(false);
     //cameraCaptureAct->setCheckable(true);
@@ -608,6 +613,7 @@ void ImageViewer::createMenus()
     imageProcessMenu->addAction(equalizeHistogramAct);
     imageProcessMenu->addAction(stretchAct);
     imageProcessMenu->addAction(stretchHistogramAct);
+    imageProcessMenu->addAction(fourTraceAct);
 
     videoMenu = new QMenu(tr("&Video"), this);
     videoMenu->addAction(cameraCaptureAct);
@@ -652,6 +658,7 @@ void ImageViewer::updateActions()
     equalizeHistogramAct->setEnabled(!fitToWindowAct->isChecked());
     stretchAct->setEnabled(!fitToWindowAct->isChecked());
     stretchHistogramAct->setEnabled(!fitToWindowAct->isChecked());
+    fourTraceAct->setEnabled(!fitToWindowAct->isChecked());
 
     cameraCaptureAct->setEnabled(!fitToWindowAct->isChecked());
 }
